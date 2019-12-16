@@ -5,7 +5,7 @@ import java.util.Optional;
 
 
 public class UserDAOImpl implements UserDAO {
-    @Override
+
     public User findById(int userId) {
         return null;
     }
@@ -63,5 +63,15 @@ public class UserDAOImpl implements UserDAO {
     @Override
     public void deleteAll() {
 
+    }
+
+    @Override
+    public List<User> retriveUsers() {
+        return null;
+    }
+
+    @Override
+    public User retriveUser(int user_id) {
+        return null;
     }
 }

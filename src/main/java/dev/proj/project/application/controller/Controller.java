@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
+import static org.springframework.util.MimeTypeUtils.APPLICATION_JSON_VALUE;
+
 @RestController
 public class Controller {
 
@@ -28,9 +30,19 @@ public class Controller {
         return userService.getAllUsers();
     }
 
+    @RequestMapping(value = "/usersQuery", method = RequestMethod.GET)
+    public List<User> getUsersQuery() {
+        return userService.getAllUsersQuery();
+    }
+
 
     @RequestMapping(value = "/users/{userId}", method = RequestMethod.GET)
-    public Optional<User> getUserById(@PathVariable int userId) {
-        return userService.getUser(userId);
+    public User getUserById(@PathVariable int userId) {
+        return userService.findById(userId);
+    }
+
+    @RequestMapping(value = "/usersQuery/{userId}", method = RequestMethod.GET)
+    public User getUserQuery(@PathVariable int userId) {
+        return userService.getUserQuery(userId);
     }
 }

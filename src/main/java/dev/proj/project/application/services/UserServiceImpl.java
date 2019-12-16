@@ -8,14 +8,14 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class UserServiceImpl {
+public class UserServiceImpl implements UserService {
     @Autowired
     private UserDAO userDAO;
     @Autowired
     private UserDAOImpl userDAOImpl;
 
     public List<User> getAllUsers(){
-        return userDAOImpl.findAll();
+        return userDAO.findAll();
     }
 
     public Optional<User> getUser(Integer id){
@@ -30,4 +30,17 @@ public class UserServiceImpl {
          userDAO.delete(user);
     }
 
+
+    public List<User> getAllUsersQuery(){
+        return userDAO.retriveUsers();
+    }
+
+    public User getUserQuery(Integer id){
+        return userDAO.retriveUser(id);
+    }
+
+    @Override
+    public User findById(int userId) {
+        return userDAO.findById(userId);
+    }
 }
