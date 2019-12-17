@@ -1,18 +1,31 @@
 package dev.proj.project.application.model;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import javax.persistence.*;
 
-@NamedQuery(name = "User.retriveUsers", query = "FROM User")
-@NamedQuery(name = "User.retriveUser", query = "FROM User WHERE id = :ID")
+@NamedQueries({
+        @NamedQuery(name = User.GET_USER_BY_ID, query = User.QUERY_GET_USER_BY_ID),
+        @NamedQuery(name = User.GET_USERS, query = User.QUERY_GET_USERS),
+
+        @NamedQuery(name = "User.retriveUsers", query = "FROM User"),
+        @NamedQuery(name = "User.retriveUser", query = "FROM User WHERE id = :ID")
+})
 @Getter
 @Setter
+@NoArgsConstructor
 @Entity
 @Table(name = "USERS")
 public class User {
+
+    public static final String GET_USER_BY_ID = "User.get_user_by_id";
+    public static final String QUERY_GET_USER_BY_ID = "select u from User u where u.id = :id";
+    public static final String GET_USERS = "User.get_users";
+    public static final String QUERY_GET_USERS = "select u from User u";
+
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
     @Column(name="FIRSTNAME")

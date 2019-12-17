@@ -24,5 +24,10 @@ public interface UserDAO extends CrudRepository<User, Integer> {
 
     @Query
     User retriveUser(@Param("ID") int user_id);
+
+    User findByIdQuery(int userId);
+
+    List<User> findAllQuery();
+
 }
 

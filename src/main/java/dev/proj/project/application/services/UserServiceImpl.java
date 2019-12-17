@@ -14,10 +14,6 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserDAOImpl userDAOImpl;
 
-    public List<User> getAllUsers(){
-        return userDAO.findAll();
-    }
-
     public Optional<User> getUser(Integer id){
         return userDAO.findById(id);
     }
@@ -30,7 +26,6 @@ public class UserServiceImpl implements UserService {
          userDAO.delete(user);
     }
 
-
     public List<User> getAllUsersQuery(){
         return userDAO.retriveUsers();
     }
@@ -42,5 +37,20 @@ public class UserServiceImpl implements UserService {
     @Override
     public User findById(int userId) {
         return userDAO.findById(userId);
+    }
+
+    @Override
+    public List<User> findAll() {
+        return userDAO.findAll();
+    }
+
+    @Override
+    public User findByIdQuery(int userId) {
+        return userDAO.findByIdQuery(userId);
+    }
+
+    @Override
+    public List<User> findAllQuery() {
+        return userDAO.findAllQuery();
     }
 }
