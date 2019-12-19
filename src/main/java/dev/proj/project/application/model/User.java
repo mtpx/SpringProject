@@ -9,8 +9,8 @@ import javax.persistence.*;
         @NamedQuery(name = User.GET_USER_BY_ID, query = User.QUERY_GET_USER_BY_ID),
         @NamedQuery(name = User.GET_USERS, query = User.QUERY_GET_USERS),
 
-        @NamedQuery(name = "User.retriveUsers", query = "FROM User"),
-        @NamedQuery(name = "User.retriveUser", query = "FROM User WHERE id = :ID")
+        //@NamedQuery(name = "User.retriveUsers", query = "FROM User"),
+        //@NamedQuery(name = "User.retriveUser", query = "FROM User WHERE id = :ID")
 })
 @Getter
 @Setter

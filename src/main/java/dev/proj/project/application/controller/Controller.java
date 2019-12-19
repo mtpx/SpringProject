@@ -2,18 +2,19 @@ package dev.proj.project.application.controller;
 
 import dev.proj.project.application.dao.UserDAO;
 import dev.proj.project.application.model.User;
-import dev.proj.project.application.services.UserServiceImpl;
+import dev.proj.project.application.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
-
-import static org.springframework.util.MimeTypeUtils.APPLICATION_JSON_VALUE;
+import java.util.Optional;
 
 @RestController
 public class Controller {
 
     @Autowired
-    private UserServiceImpl userService;
+    private UserService userService;
+
+    @Autowired
     private UserDAO userDAO;
 
     public Controller(UserDAO userDAO) {
@@ -26,8 +27,13 @@ public class Controller {
     }
 
     @RequestMapping(value = "/users", method = RequestMethod.GET)
-    public List<User> getUsers() {
-        return userService.findAll();
+    public Iterable<User> getUsers() {
+        return userDAO.findAll();
+    }
+
+    @RequestMapping(value = "/users/{userId}", method = RequestMethod.GET)
+    public Optional<User> getUserById(@PathVariable int userId) {
+        return userDAO.findById(userId);
     }
 
     @RequestMapping(value = "/usersQuery", method = RequestMethod.GET)
@@ -35,18 +41,13 @@ public class Controller {
         return userService.findAllQuery();
     }
 
-    @RequestMapping(value = "/users/{userId}", method = RequestMethod.GET)
-    public User getUserById(@PathVariable int userId) {
-        return userService.findById(userId);
-    }
-
     @RequestMapping(value = "/usersQuery/{userId}", method = RequestMethod.GET)
     public User getUserQuery(@PathVariable int userId){
         return userService.findByIdQuery(userId);
     }
 
-    @RequestMapping(value = "/addUser", method = RequestMethod.POST, consumes = APPLICATION_JSON_VALUE)
-    public void addUser(@RequestBody User user){
-        userService.saveUser(user);
-    }
+//    @RequestMapping(value = "/addUser", method = RequestMethod.POST, consumes = APPLICATION_JSON_VALUE)
+//    public void addUser(@RequestBody User user){
+//        userService.saveUser(user);
+//    }
 }

@@ -1,6 +1,5 @@
 package dev.proj.project.application.dao;
 import dev.proj.project.application.model.User;
-
 import javax.persistence.EntityManager;
 import java.util.List;
 import java.util.Optional;
@@ -14,12 +13,22 @@ public class UserDAOImpl implements UserDAO {
         this.em = em;
     }
 
-    public User findById(int userId) {
-        return null;
+
+    @Override
+    public User findByIdQuery(int userId) {
+        return em.createNamedQuery(User.GET_USER_BY_ID, User.class)
+                .setParameter("id",userId )
+                .getSingleResult();
     }
 
     @Override
-    public List<User> findAll() {
+    public List<User> findAllQuery() {
+        return em.createNamedQuery(User.GET_USERS, User.class)
+                .getResultList();
+    }
+
+    @Override
+    public <S extends User> S save(S s) {
         return null;
     }
 
@@ -38,6 +47,10 @@ public class UserDAOImpl implements UserDAO {
         return false;
     }
 
+    @Override
+    public Iterable<User> findAll() {
+        return null;
+    }
 
     @Override
     public Iterable<User> findAllById(Iterable<Integer> iterable) {
@@ -55,11 +68,6 @@ public class UserDAOImpl implements UserDAO {
     }
 
     @Override
-    public User save(User user) {
-        return null;
-    }
-
-    @Override
     public void delete(User user) {
 
     }
@@ -72,28 +80,5 @@ public class UserDAOImpl implements UserDAO {
     @Override
     public void deleteAll() {
 
-    }
-
-    @Override
-    public List<User> retriveUsers() {
-        return null;
-    }
-
-    @Override
-    public User retriveUser(int user_id) {
-        return null;
-    }
-
-    @Override
-    public User findByIdQuery(int userId) {
-        return em.createNamedQuery(User.GET_USER_BY_ID, User.class)
-                .setParameter("id",userId )
-                .getSingleResult();
-    }
-
-    @Override
-    public List<User> findAllQuery() {
-        return em.createNamedQuery(User.GET_USERS, User.class)
-                .getResultList();
     }
 }
