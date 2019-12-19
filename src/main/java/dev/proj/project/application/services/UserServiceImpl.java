@@ -9,7 +9,7 @@ import java.util.List;
 @Service
 public class UserServiceImpl implements UserService {
     @Autowired
-    private UserDAO userDAO;
+    private UserDAOCustom userDAO;
 
     @Override
     public User findByIdQuery(int userId) {

@@ -1,12 +1,15 @@
 package dev.proj.project.application.controller;
 
 import dev.proj.project.application.dao.UserDAO;
+import dev.proj.project.application.dao.UserDAOCustom;
 import dev.proj.project.application.model.User;
 import dev.proj.project.application.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
+
+import static org.springframework.util.MimeTypeUtils.APPLICATION_JSON_VALUE;
 
 @RestController
 public class Controller {
@@ -21,33 +24,43 @@ public class Controller {
         this.userDAO = userDAO;
     }
 
-    @RequestMapping(value = "/", method = RequestMethod.GET)
+    @GetMapping(value = "/")
     public String hello() {
         return "Hello world";
     }
 
-    @RequestMapping(value = "/users", method = RequestMethod.GET)
+    @GetMapping(value = "/users")
     public Iterable<User> getUsers() {
         return userDAO.findAll();
     }
 
-    @RequestMapping(value = "/users/{userId}", method = RequestMethod.GET)
+    @GetMapping(value = "/users/{userId}")
     public Optional<User> getUserById(@PathVariable int userId) {
         return userDAO.findById(userId);
     }
 
-    @RequestMapping(value = "/usersQuery", method = RequestMethod.GET)
+    @GetMapping(value = "/usersQuery")
     public List<User> getUsersQuery(){
         return userService.findAllQuery();
     }
 
-    @RequestMapping(value = "/usersQuery/{userId}", method = RequestMethod.GET)
+    @GetMapping(value = "/usersQuery/{userId}")
     public User getUserQuery(@PathVariable int userId){
         return userService.findByIdQuery(userId);
     }
 
-//    @RequestMapping(value = "/addUser", method = RequestMethod.POST, consumes = APPLICATION_JSON_VALUE)
-//    public void addUser(@RequestBody User user){
-//        userService.saveUser(user);
-//    }
+    @PostMapping(value = "/users", consumes = APPLICATION_JSON_VALUE)
+    public void addUser(@RequestBody User user){
+        userDAO.save(user);
+    }
+
+    @DeleteMapping(value = "/users/{userId}")
+    public void deleteUser(@PathVariable int userId){
+        userDAO.deleteById(userId);
+    }
+
+    @DeleteMapping(value = "/users")
+    public void deleteAllUsers(){
+        userDAO.deleteAll();
+    }
 }
