@@ -1,12 +1,10 @@
 package dev.proj.project.application.controller;
 
 import dev.proj.project.application.dao.UserDAO;
-import dev.proj.project.application.dao.UserDAOCustom;
 import dev.proj.project.application.model.User;
 import dev.proj.project.application.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.stereotype.*;
 import java.util.List;
 import java.util.Optional;
 
@@ -25,8 +23,13 @@ public class Controller {
         this.userDAO = userDAO;
     }
 
-    @GetMapping(value = "/userList")
+    @GetMapping(value = "/login")
     public String userList() {
+        return "login";
+    }
+
+    @GetMapping(value = "/userList")
+    public String login() {
         return "userList";
     }
 
