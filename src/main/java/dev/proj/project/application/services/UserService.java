@@ -8,4 +8,5 @@ public interface UserService {
 //    Iterable<User> findAll();
     User findByIdQuery(int userId);
     List<User> findAllQuery();
+    boolean checkUser(String mail, String password);
 }

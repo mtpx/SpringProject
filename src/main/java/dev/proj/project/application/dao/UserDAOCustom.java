@@ -7,5 +7,6 @@ import java.util.List;
 public interface UserDAOCustom {
     User findByIdQuery(int userId);
     List<User> findAllQuery();
+    List<User> checkUser(String mail, String password);
 }
 

@@ -20,4 +20,12 @@ public class UserServiceImpl implements UserService {
     public List<User> findAllQuery() {
         return userDAO.findAllQuery();
     }
+
+    @Override
+    public boolean checkUser(String mail, String password) {
+        if(userDAO.checkUser(mail, password).size()!=0)
+            return true;
+        else
+            return false;
+    }
 }

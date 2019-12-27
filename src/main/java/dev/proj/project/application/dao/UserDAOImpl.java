@@ -27,4 +27,13 @@ public class UserDAOImpl implements UserDAOCustom {
                 .getResultList();
     }
 
+    @Override
+    public List<User> checkUser(String mail, String password) {
+        return em.createNamedQuery(User.CHECK_USER, User.class)
+                .setParameter("email", mail)
+                .setParameter("pass", password)
+                .getResultList();
+
+    }
+
 }

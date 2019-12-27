@@ -1,5 +1,6 @@
 package dev.proj.project.application.controller;
 
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import dev.proj.project.application.dao.UserDAO;
 import dev.proj.project.application.model.User;
 import dev.proj.project.application.services.UserService;
@@ -7,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
-
 import static org.springframework.util.MimeTypeUtils.APPLICATION_JSON_VALUE;
 
 @org.springframework.stereotype.Controller
@@ -71,5 +71,12 @@ public class Controller {
     @DeleteMapping(value = "/users")
     public @ResponseBody void deleteAllUsers(){
         userDAO.deleteAll();
+    }
+
+    @PostMapping(value = "/login", consumes = APPLICATION_JSON_VALUE)
+    public @ResponseBody boolean checkUser(@RequestBody ObjectNode objectNode){
+        String email = objectNode.get("email").asText();
+        String password = objectNode.get("password").asText();
+        return userService.checkUser(email, password);
     }
 }

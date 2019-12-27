@@ -13,7 +13,7 @@
         <div class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title">Register form</h3>
+                    <h3 class="panel-title">Login form</h3>
                 </div>
                 <div class="panel-body">
                     <form role="form" class="form">
@@ -48,20 +48,19 @@
         e.preventDefault();
 
         $.ajax({
-            url: apiUrl + '/users',
+            url: apiUrl + '/login',
             method: "POST",
             contentType: "application/json",
             data: JSON.stringify({
-                firstname: $inputFirstName.val(),
-                lastname: $inputLastName.val(),
                 email: $inputEmail.val(),
                 password: $inputPassword.val()
             })
         })
-            .done(function (res) {
-                console.log("Użytkownik został dodany do bazy", res);
+            .done(function () {
+                alert("Użytkownik zalogowany");
             })
-            .always(function () {
+            .error(function () {
+                alert("Użytkownik niezalogowany");
             });
     });
 </script>

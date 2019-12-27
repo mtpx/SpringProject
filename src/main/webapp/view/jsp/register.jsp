@@ -75,9 +75,10 @@
             })
         })
             .done(function (res) {
-                console.log("Użytkownik został dodany do bazy", res);
+                alert('Użytkownik zarejestowany');
             })
-            .always(function () {
+            .error(function () {
+                alert('Użytkownik neizarejestrowany');
             });
     });
 </script>
