@@ -28,6 +28,11 @@ public class Controller {
         return "login";
     }
 
+    @GetMapping(value = "/")
+    public String index() {
+        return "index";
+    }
+
     @GetMapping(value = "/userList")
     public String login() {
         return "userList";

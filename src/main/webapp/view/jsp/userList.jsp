@@ -7,6 +7,16 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
 <body>
+<nav class="navbar navbar-expand-sm bg-light">
+    <ul class="navbar-nav">
+        <li class="nav-item">
+            <a class="nav-link" href="login">Login</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="register">Register</a>
+        </li>
+    </ul>
+</nav>
 <button class="button test-ajax" type="button">Pobierz listę użytkowników</button>
 <table class="table">
     <thead>
@@ -35,7 +45,7 @@
                 $list.empty();
                 $.each(res, function (i, item) {
                     $list.append('<tr><th scope="row">' + res[i].id + '</th><td>' + res[i].firstname + '</td><td>' + res[i].lastname + '</td>' +
-                        '<td>' + res[i].email + '</td></tr>');
+                        '<td>' + res[i].email + '</td><td><button class="btn btn-danger btn-xs btn-delete">Delete</button></td></tr>');
                 })
             })
             .always(() => {

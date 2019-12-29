@@ -8,6 +8,16 @@
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
 </head>
 <body>
+<nav class="navbar navbar-expand-sm bg-light">
+    <ul class="navbar-nav">
+        <li class="nav-item">
+            <a class="nav-link" href="login">Login</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="register">Register</a>
+        </li>
+    </ul>
+</nav>
 <div class="container">
     <div class="row centered-form">
         <div class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4">
@@ -56,11 +66,16 @@
                 password: $inputPassword.val()
             })
         })
-            .done(function () {
-                alert("Użytkownik zalogowany");
+            .done(function (res) {
+                if(res==true){
+                    alert("Użytkownik zalogowany");
+                    window.location.href = "userList";
+                }else{
+                    alert("Błędne dane logowania");
+                }
             })
             .error(function () {
-                alert("Użytkownik niezalogowany");
+                alert("Błędne dane logowania");
             });
     });
 </script>
