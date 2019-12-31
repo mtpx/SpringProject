@@ -53,10 +53,11 @@
 </script>
 <script type="text/javascript">
     apiUrl = "http://localhost:8080/";
-    $(".btn-delete").on('click', function (){
+    $("body").delegate(".btn-delete", "click", function() {
         $.ajax({
             url: apiUrl + '/users/1',
-            dataType: 'json'
+            dataType: 'json',
+            type: 'DELETE'
         });
     });
 </script>
