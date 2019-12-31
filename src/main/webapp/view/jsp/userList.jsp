@@ -31,12 +31,11 @@
     </tbody>
 </table>
 <script type="text/javascript">
-    const apiUrl = "http://localhost:8080/";
-    const $list = $('.table tbody');
+    apiUrl = "http://localhost:8080/";
+    $list = $('.table tbody');
 
-    $('.test-ajax').on('click', function () {
-        const $btn = $(this);
-
+    $(".test-ajax").on('click', function () {
+        $btn = $(this);
         $.ajax({
             url: apiUrl + '/users',
             dataType: 'json'
@@ -44,12 +43,21 @@
             .done((res) => {
                 $list.empty();
                 $.each(res, function (i, item) {
-                    $list.append('<tr><th scope="row">' + res[i].id + '</th><td>' + res[i].firstname + '</td><td>' + res[i].lastname + '</td>' +
-                        '<td>' + res[i].email + '</td><td><button class="btn btn-danger btn-xs btn-delete">Delete</button></td></tr>');
+                    $list.append('<tr><th scope="row" >' + res[i].id + '</th><td>' + res[i].firstname + '</td><td>' + res[i].lastname + '</td>' +
+                        '<td>' + res[i].email + '</td><td><button class="btn btn-danger btn-xs btn-delete" id=aaa'+res[i].id+'>Delete</button></td></tr>');
                 })
             })
-            .always(() => {
-            });
+    });
+
+
+</script>
+<script type="text/javascript">
+    apiUrl = "http://localhost:8080/";
+    $(".btn-delete").on('click', function (){
+        $.ajax({
+            url: apiUrl + '/users/1',
+            dataType: 'json'
+        });
     });
 </script>
 </body>

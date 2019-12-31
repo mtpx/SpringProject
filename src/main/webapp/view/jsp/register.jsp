@@ -61,7 +61,7 @@
     </div>
 </div>
 <script type="text/javascript">
-    const apiUrl = "http://localhost:8080";
+    apiUrl = "http://localhost:8080";
     const $form = $('.form');
     const $inputFirstName = $('#first_name');
     const $inputLastName = $('#last_name');
