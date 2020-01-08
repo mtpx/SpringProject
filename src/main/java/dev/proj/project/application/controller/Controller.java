@@ -23,6 +23,8 @@ public class Controller {
         this.userDAO = userDAO;
     }
 
+    //widoki
+
     @GetMapping(value = "/login")
     public String userList() {
         return "login";
@@ -42,6 +44,8 @@ public class Controller {
     public String register() {
         return "register";
     }
+
+    //rest
 
     @GetMapping(value = "/users")
     public @ResponseBody Iterable<User> getUsers() {
