@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>PageTitle</title>
+    <title>User list page</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -35,12 +35,11 @@
                 $list.empty();
                 $.each(res, function (i, item) {
                     $list.append('<tr><th scope="row" >' + res[i].id + '</th><td>' + res[i].firstname + '</td><td>' + res[i].lastname + '</td>' +
-                        '<td>' + res[i].email + '</td><td><button class="btn btn-danger btn-xs btn-delete" id='+res[i].id+'>Delete</button></td></tr>');
+                        '<td>' + res[i].email + '</td><td><button class="btn btn-danger btn-xs btn-delete" id='+res[i].id+'>Delete</button></td>' +
+                        '<td><button class="btn btn-warning btn-xs btn-edit">Edit</button></td></tr>');
                 })
             })
     });
-
-
 </script>
 <script type="text/javascript">
     apiUrl = "http://localhost:8080";

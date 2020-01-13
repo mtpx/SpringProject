@@ -13,7 +13,6 @@ import java.util.List;
         @NamedQuery(name = User.GET_USER_BY_ID, query = User.QUERY_GET_USER_BY_ID),
         @NamedQuery(name = User.GET_USERS, query = User.QUERY_GET_USERS),
         @NamedQuery(name = User.CHECK_USER, query = User.QUERY_CHECK_USER),
-
 })
 @Getter
 @Setter
