@@ -15,9 +15,9 @@ public class UserDAOImpl implements UserDAOCustom {
     }
 
     @Override
-    public User findByIdQuery(int userId) {
+    public User findByIdQuery(int id) {
         return em.createNamedQuery(User.GET_USER_BY_ID, User.class)
-                .setParameter("id",userId )
+                .setParameter("id",id )
                 .getSingleResult();
     }
 
@@ -28,11 +28,12 @@ public class UserDAOImpl implements UserDAOCustom {
     }
 
     @Override
-    public List<User> checkUser(String mail, String password) {
+    public List<User> checkUser(String email, String password) {
         return em.createNamedQuery(User.CHECK_USER, User.class)
-                .setParameter("email", mail)
-                .setParameter("pass", password)
+                .setParameter("email", email)
+                .setParameter("password", password)
                 .getResultList();
+
 
     }
 

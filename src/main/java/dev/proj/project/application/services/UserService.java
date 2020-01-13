@@ -4,7 +4,7 @@ import dev.proj.project.application.model.User;
 import java.util.List;
 
 public interface UserService {
-    User findByIdQuery(int userId);
+    User findByIdQuery(int id);
     List<User> findAllQuery();
-    boolean checkUser(String mail, String password);
+    int checkUser(String mail, String password);
 }

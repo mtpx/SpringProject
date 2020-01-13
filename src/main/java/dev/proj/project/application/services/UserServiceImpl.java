@@ -12,8 +12,8 @@ public class UserServiceImpl implements UserService {
     private UserDAOCustom userDAO;
 
     @Override
-    public User findByIdQuery(int userId) {
-        return userDAO.findByIdQuery(userId);
+    public User findByIdQuery(int id) {
+        return userDAO.findByIdQuery(id);
     }
 
     @Override
@@ -22,10 +22,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public boolean checkUser(String mail, String password) {
-        if(userDAO.checkUser(mail, password).size()!=0)
-            return true;
-        else
-            return false;
+    public int checkUser(String email, String password) {
+        List<User> result = userDAO.checkUser(email, password);
+        if(result.size()!=0) {
+            return result.get(0).id; //logowanie udane
+        }else {
+            return 0; //logowanie nieudane
+        }
     }
 }
