@@ -9,5 +9,8 @@
 </head>
 <body>
 <jsp:include page="header.jsp" />
+<script type="text/javascript">
+    localStorage.setItem('loggedUserId','0');
+</script>
 </body>
 </html>

@@ -52,11 +52,11 @@
             contentType:'application/json',
             dataType: 'text',
             success: function(result) {
-                 row.closest("tr").remove();
-                 alert('user: '+id+' deleted');
+                row.closest("tr").remove();
+                alert('user: '+id+' deleted');
             },
             error: function(result) {
-                 alert('cannot delete user: '+id);
+                alert('cannot delete user: '+id);
             }
         });
     });

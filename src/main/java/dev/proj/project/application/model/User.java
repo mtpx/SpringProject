@@ -51,6 +51,6 @@ public class User {
     private String password;
 
     @JsonIgnore
-    @OneToMany(mappedBy="user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<Address> address;
+    @OneToMany(mappedBy="user", cascade = CascadeType.ALL)
+    private List<Address> address = new ArrayList<>();
 }

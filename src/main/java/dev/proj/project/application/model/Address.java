@@ -1,6 +1,7 @@
 package dev.proj.project.application.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -51,11 +52,11 @@ public class Address {
     @Column(name="city")
     private String city;
 
-    @ManyToOne (fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id")
+    @ManyToOne(targetEntity = User.class, fetch = FetchType.LAZY)
     private User user;
 
-    @JsonIgnore
-    @OneToOne(mappedBy="address", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    private Home home;
+//    @JsonIgnore
+//    @OneToOne(mappedBy="address", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+//    private Home home;
 }

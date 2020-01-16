@@ -38,10 +38,12 @@
 <script type="text/javascript">
     apiUrl = "http://localhost:8080";
     const $form = $('.form');
-    const $inputEmail = $('#email');
-    const $inputPassword = $('#password');
+    $inputEmail = $('#email');
+    $inputPassword = $('#password');
 
     $form.on("submit", function (e) {
+
+
         e.preventDefault();
 
         $.ajax({
@@ -56,7 +58,7 @@
             .done(function (res) {
                 if(res>0){
                     alert("Użytkownik zalogowany");
-                    localStorage.setItem('loggedUser',res);
+                    localStorage.setItem('loggedUserId',res);
                     window.location.href = "users";
                 }else{
                     alert("Błędne dane logowania");

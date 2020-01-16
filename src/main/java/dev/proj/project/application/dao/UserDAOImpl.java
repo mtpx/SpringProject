@@ -32,8 +32,5 @@ public class UserDAOImpl implements UserDAOCustom {
                 .setParameter("email", email)
                 .setParameter("password", password)
                 .getResultList();
-
-
     }
-
 }

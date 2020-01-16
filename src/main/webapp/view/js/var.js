@@ -1,1 +1,1 @@
-var loggedUser = ""
+localStorage.setItem('loggedUserId','0')
