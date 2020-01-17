@@ -5,8 +5,8 @@ import dev.proj.project.application.model.User;
 import java.util.List;
 
 public interface AddressDAOCustom {
-    //Address findByIdQuery(int addressId);
-    //List<Address> findAllQuery();
+    List<Address> findAll();
+    List<Address> findAddressesByUserId(int userId);
 }
 
 

@@ -1,19 +1,15 @@
 package dev.proj.project.application.model;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.util.List;
 
 @NamedQueries({
-//        @NamedQuery(name = Address.GET_ADDRESS_BY_ID, query = Address.QUERY_GET_USER_BY_ID),
-//        @NamedQuery(name = Address.GET_ADDRESS, query = Address.QUERY_GET_ADDRESS),
-
+        @NamedQuery(name = Address.GET_ADDRESSES, query = Address.QUERY_GET_ADDRESSES),
+        @NamedQuery(name = Address.GET_ADDRESSES_BY_USERID, query = Address.QUERY_GET_ADDRESSES_BY_USERID),
 })
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -21,10 +17,11 @@ import java.util.List;
 @Table(name = "address")
 public class Address {
 
-//    public static final String GET_USER_BY_ID = "User.get_user_by_id";
-//    public static final String QUERY_GET_USER_BY_ID = "select u from User u where u.id = :id";
-//    public static final String GET_USERS = "User.get_users";
-//    public static final String QUERY_GET_USERS = "select u from User u";
+    public static final String GET_ADDRESSES_BY_USERID = "Addresses.get_addresses_by_userid";
+    public static final String QUERY_GET_ADDRESSES_BY_USERID = "select a from Address a where a.user.id = :user_id";
+    public static final String GET_ADDRESSES = "Address.get_addresses";
+    public static final String QUERY_GET_ADDRESSES = "select a from Address a";
+
 
     @Id
     @NotNull
@@ -32,31 +29,26 @@ public class Address {
     @Column(name = "id", updatable = false, nullable = false)
     private int id;
 
-    @NotNull
     @Column(name="street")
     private String street;
 
-    @NotNull
     @Column(name="house")
     private String house;
 
-    @NotNull
     @Column(name="flat")
     private String flat;
 
-    @NotNull
     @Column(name="code")
     private String code;
 
-    @NotNull
     @Column(name="city")
     private String city;
 
-    @JoinColumn(name = "user_id")
-    @ManyToOne(targetEntity = User.class, fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id",nullable = false)
+    @ManyToOne(fetch = FetchType.EAGER)
     private User user;
 
-//    @JsonIgnore
 //    @OneToOne(mappedBy="address", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+//    @JsonIgnore
 //    private Home home;
 }

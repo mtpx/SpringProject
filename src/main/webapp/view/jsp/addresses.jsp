@@ -8,7 +8,7 @@
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
 </head>
 <body>
-<jsp:include page="header.jsp"/>
+<jsp:include page="header.jsp" />
 <div class="container">
     <div class="row centered-form">
         <div class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4">
@@ -52,45 +52,117 @@
                                 </div>
                             </div>
                         </div>
-                        <input type="submit" value="Submit address" id="submitAddressBtn" class="btn btn-info btn-block">
+                        <input type="button" value="Submit address" id="submitAddressBtn" class="btn btn-info btn-block">
                     </form>
                 </div>
             </div>
         </div>
     </div>
 </div>
+<button id="getAddresses" type="button">Pobierz listę adresów</button>
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">Id</th>
+        <th scope="col">House</th>
+        <th scope="col">Flat</th>
+        <th scope="col">Code</th>
+        <th scope="col">City</th>
+        <th scope="col">UserId</th>
+    </tr>
+    </thead>
+    <tbody>
+    </tbody>
+</table>
 <script type="text/javascript">
     apiUrl = "http://localhost:8080";
-
-    const $form = $('.form');
-    $inputStreet = $('#street');
-    $inputHouse = $('#house');
-    $inputFlat = $('#flat');
-    $inputCode = $('#code');
-    $inputCity = $('#city');
-
-    $form.on("submit", function (e) {
-        e.preventDefault();
+    $list = $('.table tbody');
+    $("#getAddresses").on('click', function () {
+        console.log(localStorage.getItem('loggedUser'));
+        $btn = $(this);
         $.ajax({
-            url: apiUrl + '/address',
-            method: "POST",
-            contentType: "application/json",
-            data: JSON.stringify({
-                street: $inputStreet.val(),
-                house: $inputHouse.val(),
-                flat: $inputFlat.val(),
-                code: $inputCode.val(),
-                city: $inputCity.val(),
-                user_id: localStorage.getItem('loggedUserId')
-            })
+            url: apiUrl + '/address/',
+            dataType: 'json'
         })
-            .done(function (res) {
-                alert('Adres dodany');
-            })
-            .error(function () {
-                alert('Błąd dodawania adresu');
+            .done((res) => {
+                $list.empty();
+                $.each(res, function (i, item) {
+                    $list.append('' +
+                        '<tr><th scope="row" >' + res[i].id + '</th>' +
+                        '<td>' + res[i].house + '</td>' +
+                        '<td>' + res[i].flat + '</td>' +
+                        '<td>' + res[i].code + '</td>' +
+                        '<td>' + res[i].city + '</td>' +
+                        '<td>' + res[i].user.id + '</td>' +
+                        '<td><button class="btn btn-danger btn-xs btn-delete" id='+res[i].id+'>Delete</button></td>' +
+                        '<td><button class="btn btn-warning btn-xs btn-edit">Edit</button></td></tr>');
+                })
             })
     });
+</script>
+<script type="text/javascript">
+
+    $('#submitAddressBtn').click(function () {
+        let addressData = {
+                street: $('#street').val(),
+                house: $('#house').val(),
+                flat: $('#flat').val(),
+                code: $('#code').val(),
+                city: $('#city').val(),
+                user:{
+                    id: localStorage.getItem('loggedUserId')
+                }
+        };
+        getAddresses(addressData);
+    });
+
+    function getAddresses(data) {
+        $.ajax({
+            url: "http://localhost:8080/address",
+            type: "POST",
+            contentType: "application/json",
+            data: JSON.stringify(data),
+            success: function () {
+                alert("Addess added successfully");
+                console.log(data)
+            },
+            error: function () {
+                alert("Adding address error")
+            }
+        })
+    }
+
+    // const $form = $('.form');
+    // $inputStreet = $('#street');
+    // $inputHouse = $('#house');
+    // $inputFlat = $('#flat');
+    // $inputCode = $('#code');
+    // $inputCity = $('#city');
+    //
+    // $form.on("submit", function (e) {
+    //     e.preventDefault();
+    //     $.ajax({
+    //         url: apiUrl + '/address',
+    //         method: "POST",
+    //         contentType: "application/json",
+    //         data: JSON.stringify({
+    //             street: $inputStreet.val(),
+    //             house: $inputHouse.val(),
+    //             flat: $inputFlat.val(),
+    //             code: $inputCode.val(),
+    //             city: $inputCity.val(),
+    //             user:{
+    //                 id: localStorage.getItem('loggedUserId')
+    //             }
+    //         })
+    //     })
+    //         .done(function (res) {
+    //             alert('Adres dodany');
+    //         })
+    //         .error(function () {
+    //             alert('Błąd dodawania adresu');
+    //         })
+    // });
 
 </script>
 </body>

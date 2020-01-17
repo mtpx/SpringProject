@@ -8,7 +8,7 @@
 </head>
 <body>
 <jsp:include page="header.jsp" />
-<button class="button test-ajax" type="button">Pobierz listę użytkowników</button>
+<button class="button test-ajax" id="getUsers" type="button">Pobierz listę użytkowników</button>
 <table class="table">
     <thead>
     <tr>
@@ -24,7 +24,7 @@
 <script type="text/javascript">
     apiUrl = "http://localhost:8080";
     $list = $('.table tbody');
-    $(".test-ajax").on('click', function () {
+    $("#getUsers").on('click', function () {
         console.log(localStorage.getItem('loggedUser'));
         $btn = $(this);
         $.ajax({
@@ -34,9 +34,14 @@
             .done((res) => {
                 $list.empty();
                 $.each(res, function (i, item) {
-                    $list.append('<tr><th scope="row" >' + res[i].id + '</th><td>' + res[i].firstname + '</td><td>' + res[i].lastname + '</td>' +
-                        '<td>' + res[i].email + '</td><td><button class="btn btn-danger btn-xs btn-delete" id='+res[i].id+'>Delete</button></td>' +
-                        '<td><button class="btn btn-warning btn-xs btn-edit">Edit</button></td></tr>');
+                    $list.append('<tr>' +
+                        '<th scope="row" >' + res[i].id + '</th>' +
+                        '<td>' + res[i].firstname + '</td>' +
+                        '<td>' + res[i].lastname + '</td>' +
+                        '<td>' + res[i].email + '</td>' +
+                        '<td><button class="btn btn-danger btn-xs btn-delete" id='+res[i].id+'>Delete</button></td>' +
+                        '<td><button class="btn btn-warning btn-xs btn-edit">Edit</button></td>' +
+                        '</tr>');
                 })
             })
     });

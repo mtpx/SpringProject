@@ -13,4 +13,16 @@ public class AddressDAOImpl implements AddressDAOCustom {
         this.em = em;
     }
 
+    @Override
+    public List<Address> findAll() {
+        return em.createNamedQuery(Address.GET_ADDRESSES, Address.class)
+                .getResultList();
+    }
+
+    @Override
+    public List<Address> findAddressesByUserId(int userId) {
+        return em.createNamedQuery(Address.GET_ADDRESSES_BY_USERID, Address.class)
+                .setParameter("userId",userId )
+                .getResultList();
+    }
 }
