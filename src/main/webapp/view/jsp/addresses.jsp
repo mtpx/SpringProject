@@ -14,7 +14,7 @@
         <div class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title">Register form</h3>
+                    <h3 class="panel-title">Add new address</h3>
                 </div>
                 <div class="panel-body">
                     <form role="form" class="form">
@@ -59,7 +59,8 @@
         </div>
     </div>
 </div>
-<button id="getAddresses" type="button">Pobierz listę adresów</button>
+<button id="getAddresses" type="button">Get addresses</button>
+<button id="getMyAddresses" type="button">Get my addresses</button>
 <table class="table">
     <thead>
     <tr>
@@ -75,13 +76,12 @@
     </tbody>
 </table>
 <script type="text/javascript">
-    apiUrl = "http://localhost:8080";
     $list = $('.table tbody');
     $("#getAddresses").on('click', function () {
-        console.log(localStorage.getItem('loggedUser'));
+        console.log(localStorage.getItem('loggedUserId'));
         $btn = $(this);
         $.ajax({
-            url: apiUrl + '/address/',
+            url: 'http://localhost:8080/address/',
             dataType: 'json'
         })
             .done((res) => {
@@ -101,7 +101,31 @@
     });
 </script>
 <script type="text/javascript">
-
+    $list = $('.table tbody');
+    $("#getMyAddresses").on('click', function () {
+        console.log(localStorage.getItem('loggedUserId'));
+        $btn = $(this);
+        $.ajax({
+            url: 'http://localhost:8080/address/'+localStorage.getItem('loggedUserId'),
+            dataType: 'json'
+        })
+            .done((res) => {
+                $list.empty();
+                $.each(res, function (i, item) {
+                    $list.append('' +
+                        '<tr><th scope="row" >' + res[i].id + '</th>' +
+                        '<td>' + res[i].house + '</td>' +
+                        '<td>' + res[i].flat + '</td>' +
+                        '<td>' + res[i].code + '</td>' +
+                        '<td>' + res[i].city + '</td>' +
+                        '<td>' + res[i].user.id + '</td>' +
+                        '<td><button class="btn btn-danger btn-xs btn-delete" id='+res[i].id+'>Delete</button></td>' +
+                        '<td><button class="btn btn-warning btn-xs btn-edit">Edit</button></td></tr>');
+                })
+            })
+    });
+</script>
+<script type="text/javascript">
     $('#submitAddressBtn').click(function () {
         let addressData = {
                 street: $('#street').val(),
@@ -113,10 +137,10 @@
                     id: localStorage.getItem('loggedUserId')
                 }
         };
-        getAddresses(addressData);
+        saveAddress(addressData);
     });
 
-    function getAddresses(data) {
+    function saveAddress(data) {
         $.ajax({
             url: "http://localhost:8080/address",
             type: "POST",
@@ -131,39 +155,6 @@
             }
         })
     }
-
-    // const $form = $('.form');
-    // $inputStreet = $('#street');
-    // $inputHouse = $('#house');
-    // $inputFlat = $('#flat');
-    // $inputCode = $('#code');
-    // $inputCity = $('#city');
-    //
-    // $form.on("submit", function (e) {
-    //     e.preventDefault();
-    //     $.ajax({
-    //         url: apiUrl + '/address',
-    //         method: "POST",
-    //         contentType: "application/json",
-    //         data: JSON.stringify({
-    //             street: $inputStreet.val(),
-    //             house: $inputHouse.val(),
-    //             flat: $inputFlat.val(),
-    //             code: $inputCode.val(),
-    //             city: $inputCity.val(),
-    //             user:{
-    //                 id: localStorage.getItem('loggedUserId')
-    //             }
-    //         })
-    //     })
-    //         .done(function (res) {
-    //             alert('Adres dodany');
-    //         })
-    //         .error(function () {
-    //             alert('Błąd dodawania adresu');
-    //         })
-    // });
-
 </script>
 </body>
 </html>

@@ -27,5 +27,4 @@
     $("#registerMenuBtn").on('click', function (){
         localStorage.setItem('loggedUserId','0');
     });
-
 </script>

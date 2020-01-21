@@ -8,7 +8,7 @@
 </head>
 <body>
 <jsp:include page="header.jsp" />
-<button class="button test-ajax" id="getUsers" type="button">Pobierz listę użytkowników</button>
+<button class="button test-ajax" id="getUsers" type="button">Get users</button>
 <table class="table">
     <thead>
     <tr>

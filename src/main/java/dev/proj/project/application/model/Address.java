@@ -1,4 +1,5 @@
 package dev.proj.project.application.model;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -48,7 +49,7 @@ public class Address {
     @ManyToOne(fetch = FetchType.EAGER)
     private User user;
 
-//    @OneToOne(mappedBy="address", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-//    @JsonIgnore
-//    private Home home;
+    @OneToOne(mappedBy="address", cascade = CascadeType.MERGE)
+    @JsonIgnore
+    private Home home;
 }

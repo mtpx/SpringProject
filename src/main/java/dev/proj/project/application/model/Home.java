@@ -3,11 +3,13 @@ package dev.proj.project.application.model;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.validator.constraints.UniqueElements;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @NamedQueries({
-//        @NamedQuery(name = Home.GET_USER_BY_ID, query = Home.QUERY_GET_USER_BY_ID),
+        @NamedQuery(name = Home.GET_HOME_BY_ID, query = Home.QUERY_GET_HOME_BY_ID),
 //        @NamedQuery(name = Home.GET_USERS, query = Home.QUERY_GET_USERS),
 //        @NamedQuery(name = Home.CHECK_USER, query = Home.QUERY_CHECK_USER),
 
@@ -16,11 +18,11 @@ import javax.validation.constraints.NotNull;
 @Setter
 @NoArgsConstructor
 @Entity
-@Table(name = "home")
+@Table(name = "home",uniqueConstraints = {@UniqueConstraint(columnNames = {"address_id"})})
 public class Home {
 
-//    public static final String GET_USER_BY_ID = "User.get_user_by_id";
-//    public static final String QUERY_GET_USER_BY_ID = "select u from User u where u.id = :id";
+    public static final String GET_HOME_BY_ID = "User.get_home_by_id";
+    public static final String QUERY_GET_HOME_BY_ID = "select h from Home h where h.id = :id";
 //    public static final String GET_USERS = "User.get_users";
 //    public static final String QUERY_GET_USERS = "select u from User u";
 //    public static final String CHECK_USER = "User.check_user";
@@ -44,7 +46,7 @@ public class Home {
     @Column(name="type")
     private String type;
 
-//    @JoinColumn(name = "address_id",nullable = false)
-//    @OneToOne (fetch = FetchType.EAGER,cascade = CascadeType.ALL)
-//    private Address address;
+    @JoinColumn(name = "address_id", unique = true)
+    @OneToOne (cascade = CascadeType.MERGE)
+    private Address address;
 }
