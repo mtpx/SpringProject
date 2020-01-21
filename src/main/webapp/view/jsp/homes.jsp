@@ -14,7 +14,7 @@
         <div class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title">Add new address</h3>
+                    <h3 class="panel-title">Add new home</h3>
                 </div>
                 <div class="panel-body">
                     <form role="form" class="form">
@@ -90,6 +90,7 @@
         <th scope="col">HomeId</th>
         <th scope="col">AddressId</th>
         <th scope="col">UserId</th>
+        <th scope="col">Street</th>
         <th scope="col">House</th>
         <th scope="col">Flat</th>
         <th scope="col">Code</th>
@@ -108,25 +109,25 @@
         console.log(localStorage.getItem('loggedUserId'));
         $btn = $(this);
         $.ajax({
-            url: 'http://localhost:8080/home/',
+            url: 'http://localhost:8080/userView/',
             dataType: 'json'
         })
             .done((res) => {
                 $list.empty();
                 $.each(res, function (i, item) {
-                    $list.append('' +
-                        '<tr><th scope="row" >' + res[i].id + '</th>' +
-                        '<td>' + res[i].address.id + '</td>' +
-                        '<td>' + res[i].address.user.id + '</td>' +
-                        '<td>' + res[i].address.house + '</td>' +
-                        '<td>' + res[i].address.flat + '</td>' +
-                        '<td>' + res[i].address.code + '</td>' +
-                        '<td>' + res[i].address.city + '</td>' +
+                    $list.append(
+                        '<tr><th scope="row" >' + res[i].homeId + '</th>' +
+                        '<td>' + res[i].addressId + '</td>' +
+                        '<td>' + res[i].userId + '</td>' +
+                        '<td>' + res[i].street + '</td>' +
+                        '<td>' + res[i].house + '</td>' +
+                        '<td>' + res[i].flat + '</td>' +
+                        '<td>' + res[i].code + '</td>' +
+                        '<td>' + res[i].city + '</td>' +
                         '<td>' + res[i].area + '</td>' +
                         '<td>' + res[i].price + '</td>' +
                         '<td>' + res[i].type + '</td>' +
-                        '<td><button class="btn btn-danger btn-xs btn-delete" id='+res[i].id+'>Delete</button></td>' +
-                        '<td><button class="btn btn-warning btn-xs btn-edit">Edit</button></td></tr>');
+                        '<td><button class="btn btn-danger btn-xs btn-delete" id='+res[i].id+'>Delete</button></td></tr>');
                 })
             })
     });
@@ -137,21 +138,25 @@
         console.log(localStorage.getItem('loggedUserId'));
         $btn = $(this);
         $.ajax({
-            url: 'http://localhost:8080/home/'+localStorage.getItem('loggedUserId'),
+            url: 'http://localhost:8080/userView/'+localStorage.getItem('loggedUserId'),
             dataType: 'json'
         })
             .done((res) => {
                 $list.empty();
                 $.each(res, function (i, item) {
-                    $list.append('' +
-                        '<tr><th scope="row" >' + res[i].id + '</th>' +
+                    $list.append(
+                        '<tr><th scope="row" >' + res[i].homeId + '</th>' +
+                        '<td>' + res[i].addressId + '</td>' +
+                        '<td>' + res[i].userId + '</td>' +
+                        '<td>' + res[i].street + '</td>' +
                         '<td>' + res[i].house + '</td>' +
                         '<td>' + res[i].flat + '</td>' +
                         '<td>' + res[i].code + '</td>' +
                         '<td>' + res[i].city + '</td>' +
-                        '<td>' + res[i].user.id + '</td>' +
-                        '<td><button class="btn btn-danger btn-xs btn-delete" id='+res[i].id+'>Delete</button></td>' +
-                        '<td><button class="btn btn-warning btn-xs btn-edit">Edit</button></td></tr>');
+                        '<td>' + res[i].area + '</td>' +
+                        '<td>' + res[i].price + '</td>' +
+                        '<td>' + res[i].type + '</td>' +
+                        '<td><button class="btn btn-danger btn-xs btn-delete" id='+res[i].id+'>Delete</button></td></tr>');
                 })
             })
     });

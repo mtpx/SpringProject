@@ -40,7 +40,6 @@
                         '<td>' + res[i].lastname + '</td>' +
                         '<td>' + res[i].email + '</td>' +
                         '<td><button class="btn btn-danger btn-xs btn-delete" id='+res[i].id+'>Delete</button></td>' +
-                        '<td><button class="btn btn-warning btn-xs btn-edit">Edit</button></td>' +
                         '</tr>');
                 })
             })

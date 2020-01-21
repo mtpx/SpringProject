@@ -65,6 +65,7 @@
     <thead>
     <tr>
         <th scope="col">Id</th>
+        <th scope="col">Street</th>
         <th scope="col">House</th>
         <th scope="col">Flat</th>
         <th scope="col">Code</th>
@@ -89,13 +90,13 @@
                 $.each(res, function (i, item) {
                     $list.append('' +
                         '<tr><th scope="row" >' + res[i].id + '</th>' +
+                        '<td>' + res[i].street + '</td>' +
                         '<td>' + res[i].house + '</td>' +
                         '<td>' + res[i].flat + '</td>' +
                         '<td>' + res[i].code + '</td>' +
                         '<td>' + res[i].city + '</td>' +
                         '<td>' + res[i].user.id + '</td>' +
-                        '<td><button class="btn btn-danger btn-xs btn-delete" id='+res[i].id+'>Delete</button></td>' +
-                        '<td><button class="btn btn-warning btn-xs btn-edit">Edit</button></td></tr>');
+                        '<td><button class="btn btn-danger btn-xs btn-delete" id='+res[i].id+'>Delete</button></td></tr>');
                 })
             })
     });
@@ -114,13 +115,13 @@
                 $.each(res, function (i, item) {
                     $list.append('' +
                         '<tr><th scope="row" >' + res[i].id + '</th>' +
+                        '<td>' + res[i].street + '</td>' +
                         '<td>' + res[i].house + '</td>' +
                         '<td>' + res[i].flat + '</td>' +
                         '<td>' + res[i].code + '</td>' +
                         '<td>' + res[i].city + '</td>' +
                         '<td>' + res[i].user.id + '</td>' +
-                        '<td><button class="btn btn-danger btn-xs btn-delete" id='+res[i].id+'>Delete</button></td>' +
-                        '<td><button class="btn btn-warning btn-xs btn-edit">Edit</button></td></tr>');
+                        '<td><button class="btn btn-danger btn-xs btn-delete" id='+res[i].id+'>Delete</button></td></tr>');
                 })
             })
     });
