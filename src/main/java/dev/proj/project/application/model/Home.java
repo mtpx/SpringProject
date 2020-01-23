@@ -3,7 +3,6 @@ package dev.proj.project.application.model;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.validator.constraints.UniqueElements;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -40,7 +39,7 @@ public class Home {
 
     @NotNull
     @Column(name="price")
-    private String price;
+    private int price;
 
     @NotNull
     @Column(name="type")

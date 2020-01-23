@@ -1,14 +1,9 @@
 package dev.proj.project.application.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-import java.util.ArrayList;
-import java.util.List;
 
 @NamedQueries({
         @NamedQuery(name = UserView.GET_DATA_BY_USERID, query = UserView.QUERY_GET_DATA_BY_USERID),
@@ -56,7 +51,7 @@ public class UserView {
     private String area;
 
     @Column(name="price")
-    private String price;
+    public int price;
 
     @Column(name="type")
     private String type;

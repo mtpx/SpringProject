@@ -1,24 +1,19 @@
 package dev.proj.project.application.controller;
 
-import com.fasterxml.jackson.databind.node.ObjectNode;
-import dev.proj.project.application.dao.UserDAO;
 import dev.proj.project.application.dao.UserViewDAO;
-import dev.proj.project.application.model.User;
 import dev.proj.project.application.model.UserView;
-import dev.proj.project.application.services.UserService;
+import dev.proj.project.application.services.UserViewService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
-import java.util.Optional;
-
-import static org.springframework.util.MimeTypeUtils.APPLICATION_JSON_VALUE;
 
 @RestController
 public class UserViewController {
 
     @Autowired
     private UserViewDAO userViewDAO;
+
+    @Autowired
+    private UserViewService userViewService;
 
     public UserViewController(UserViewDAO userViewDAO) {
         this.userViewDAO = userViewDAO; }
@@ -33,10 +28,16 @@ public class UserViewController {
         return userViewDAO.findByUserId(id);
     }
 
-//    @GetMapping(value = "/userView/{id}")
-//    public List<UserView> getUserViewById(@PathVariable int id){
-//        return userViewDAO.findByUserId(id);
-//    }
+    @GetMapping(value = "/userView/{id}/value")
+    public int getValueOfHomes(@PathVariable int id){
+        return userViewService.getValueOfHomes(id);
+    }
+
+    @GetMapping(value = "/userView/{id}/numberOfHomes")
+    public int getNumberOfHomes(@PathVariable int id){
+        return userViewService.getNumberOfHomes(id);
+    }
+
 
 
 }

@@ -136,6 +136,7 @@
     $list = $('.table tbody');
     $("#getMyHomes").on('click', function () {
         console.log(localStorage.getItem('loggedUserId'));
+        console.log()
         $btn = $(this);
         $.ajax({
             url: 'http://localhost:8080/userView/'+localStorage.getItem('loggedUserId'),

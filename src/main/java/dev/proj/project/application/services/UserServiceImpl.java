@@ -1,5 +1,4 @@
 package dev.proj.project.application.services;
-
 import dev.proj.project.application.dao.*;
 import dev.proj.project.application.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
