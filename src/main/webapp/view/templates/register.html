@@ -1,4 +1,3 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
     <title>Register Page</title>
@@ -8,7 +7,7 @@
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
 </head>
 <body>
-<jsp:include page="header.jsp"/>
+<div id="header"></div>
 <div class="container">
     <div class="row centered-form">
         <div class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4">
@@ -17,7 +16,7 @@
                     <h3 class="panel-title">Register form</h3>
                 </div>
                 <div class="panel-body">
-                    <form role="form" class="form">
+                    <div id="function1">
                         <div class="row">
                             <div class="col-xs-6 col-sm-6 col-md-6">
                                 <div class="form-group">
@@ -40,25 +39,23 @@
                             <input type="password" name="password" id="password" class="form-control input-sm"
                                    placeholder="Password">
                         </div>
-                        <input type="button" value="Register" id="registerBtn" class="btn btn-info btn-block">
-                    </form>
+                        <input type="button" value="Register" id="registerBtn" onclick="prepareRegisterData()" class="btn btn-info btn-block">
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
 <script type="text/javascript">
-    apiUrl = "http://localhost:8080";
-
-    $('#registerBtn').click(function () {
-        let registerData = {
-            firstname: $('#first_name').val(),
-            lastname: $('#last_name').val(),
-            email: $('#email').val(),
-            password: $('#password').val()
-        };
-        register(registerData);
-    });
+    function prepareRegisterData() {
+            let registerData = {
+                firstname: $('#first_name').val(),
+                lastname: $('#last_name').val(),
+                email: $('#email').val(),
+                password: $('#password').val()
+            };
+            register(registerData);
+    }
 
     function register(data) {
         $.ajax({
@@ -74,6 +71,11 @@
             }
         })
     }
+</script>
+<script>
+    $(document).ready(function () {
+        $('#header').load('header');
+    });
 </script>
 </body>
 </html>

@@ -10,6 +10,11 @@ public class MainController {
         return "login";
     }
 
+    @GetMapping(value = "/header")
+    public String header() {
+        return "header";
+    }
+
     @GetMapping(value = "/")
     public String index() {
         return "index";

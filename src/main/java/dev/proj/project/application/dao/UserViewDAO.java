@@ -6,6 +6,6 @@ import java.util.List;
 public interface UserViewDAO extends CrudRepository<UserView,Integer>, UserViewDAOCustom {
     List<UserView> findByUserId(int user_id);
     List<UserView> findAll();
-    List<UserView> findByStreet(String street);
+    List<UserView> findByStreetInAndCityIn(String street, String city);
 }
 
