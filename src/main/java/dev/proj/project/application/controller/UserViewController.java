@@ -6,6 +6,9 @@ import dev.proj.project.application.services.UserViewService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+import java.util.Optional;
+
 @RestController
 public class UserViewController {
 
@@ -36,6 +39,17 @@ public class UserViewController {
     @GetMapping(value = "/userView/{id}/numberOfHomes")
     public int getNumberOfHomes(@PathVariable int id){
         return userViewService.getNumberOfHomes(id);
+    }
+
+    @GetMapping(value = "/userView/search")
+    public List<UserView> searchByAddress(
+                                        @RequestParam(value = "street") Optional<String> street,
+                                          @RequestParam(value = "city")Optional<String> city
+//                                          @RequestParam(value = "house", required = false)String house,
+//                                          @RequestParam(value = "flat", required = false)String flat,
+//                                          @RequestParam(value = "code", required = false)String code
+                                ){
+        return userViewDAO.findByStreetAndCity(street,city);
     }
 
 

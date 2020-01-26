@@ -9,80 +9,128 @@
 <body>
 <div id="header"></div>
 <div class="container">
-    <div class="row centered-form">
-        <div class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Add new home</h3>
-                </div>
-                <div class="panel-body">
-                    <form role="form" class="form">
-                        <div class="row">
-                            <div class="col-xs-6 col-sm-6 col-md-6">
-                                <div class="form-group">
-                                    <input type="text" name="street" id="street" class="form-control input-sm"
-                                           placeholder="Street">
-                                </div>
-                            </div>
-                            <div class="col-xs-3 col-sm-3 col-md-3">
-                                <div class="form-group">
-                                    <input type="text" name="house" id="house" class="form-control input-sm"
-                                           placeholder="House">
-                                </div>
-                            </div>
-                            <div class="col-xs-3 col-sm-3 col-md-3">
-                                <div class="form-group">
-                                    <input type="text" name="flat" id="flat" class="form-control input-sm"
-                                           placeholder="Flat">
-                                </div>
+    <div class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Add new home</h3>
+            </div>
+            <div class="panel-body">
+                <form role="form" class="form">
+                    <div class="row">
+                        <div class="col-xs-6 col-sm-6 col-md-6">
+                            <div class="form-group">
+                                <input type="text" name="street" id="street" class="form-control input-sm"
+                                       placeholder="Street">
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-xs-4 col-sm-4 col-md-4">
-                                <div class="form-group">
-                                    <input type="text" name="code" id="code" class="form-control input-sm"
-                                           placeholder="Code">
-                                </div>
-                            </div>
-                            <div class="col-xs-8 col-sm-8 col-md-8">
-                                <div class="form-group">
-                                    <input type="text" name="city" id="city" class="form-control input-sm"
-                                           placeholder="City">
-                                </div>
+                        <div class="col-xs-3 col-sm-3 col-md-3">
+                            <div class="form-group">
+                                <input type="text" name="house" id="house" class="form-control input-sm"
+                                       placeholder="House">
                             </div>
                         </div>
-                        <br>
-                        <div class="row">
-                            <div class="col-xs-6 col-sm-6 col-md-6">
-                                <div class="form-group">
-                                    <input type="text" name="area" id="area" class="form-control input-sm"
-                                           placeholder="Area">
-                                </div>
-                            </div>
-                            <div class="col-xs-6 col-sm-6 col-md-6">
-                                <div class="form-group">
-                                    <input type="text" name="price" id="price" class="form-control input-sm"
-                                           placeholder="Price">
-                                </div>
+                        <div class="col-xs-3 col-sm-3 col-md-3">
+                            <div class="form-group">
+                                <input type="text" name="flat" id="flat" class="form-control input-sm"
+                                       placeholder="Flat">
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-xs-12 col-sm-12 col-md-12">
-                                <div class="form-group">
-                                    <input type="text" name="type" id="type" class="form-control input-sm"
-                                           placeholder="Type">
-                                </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-4 col-sm-4 col-md-4">
+                            <div class="form-group">
+                                <input type="text" name="code" id="code" class="form-control input-sm"
+                                       placeholder="Code">
                             </div>
                         </div>
-                        <input type="button" value="Submit address" id="submitHomeBtn" class="btn btn-info btn-block">
-                    </form>
-                </div>
+                        <div class="col-xs-8 col-sm-8 col-md-8">
+                            <div class="form-group">
+                                <input type="text" name="city" id="city" class="form-control input-sm"
+                                       placeholder="City">
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-xs-6 col-sm-6 col-md-6">
+                            <div class="form-group">
+                                <input type="text" name="area" id="area" class="form-control input-sm"
+                                       placeholder="Area">
+                            </div>
+                        </div>
+                        <div class="col-xs-6 col-sm-6 col-md-6">
+                            <div class="form-group">
+                                <input type="text" name="price" id="price" class="form-control input-sm"
+                                       placeholder="Price">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-12 col-md-12">
+                            <div class="form-group">
+                                <input type="text" name="type" id="type" class="form-control input-sm"
+                                       placeholder="Type">
+                            </div>
+                        </div>
+                    </div>
+                    <input type="button" value="Submit address" id="submitHomeBtn" class="btn btn-info btn-block">
+                </form>
             </div>
         </div>
     </div>
 </div>
-    <div id="numberOfHomes"></div>
-    <div id="valueOfHomes"></div>
+<div class="container">
+    <div class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Search by address</h3>
+            </div>
+            <div class="panel-body">
+                <form role="form" class="form">
+                    <div class="row">
+                        <div class="col-xs-6 col-sm-6 col-md-6">
+                            <div class="form-group">
+                                <input type="text" name="streetSearch" id="streetSearch" class="form-control input-sm"
+                                       placeholder="Street">
+                            </div>
+                        </div>
+<!--                        <div class="col-xs-3 col-sm-3 col-md-3">-->
+<!--                            <div class="form-group">-->
+<!--                                <input type="text" name="house" id="house" class="form-control input-sm"-->
+<!--                                       placeholder="House">-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <div class="col-xs-3 col-sm-3 col-md-3">-->
+<!--                            <div class="form-group">-->
+<!--                                <input type="text" name="flat" id="flat" class="form-control input-sm"-->
+<!--                                       placeholder="Flat">-->
+<!--                            </div>-->
+<!--                        </div>-->
+                    </div>
+                    <div class="row">
+<!--                        <div class="col-xs-4 col-sm-4 col-md-4">-->
+<!--                            <div class="form-group">-->
+<!--                                <input type="text" name="code" id="code" class="form-control input-sm"-->
+<!--                                       placeholder="Code">-->
+<!--                            </div>-->
+<!--                        </div>-->
+                        <div class="col-xs-8 col-sm-8 col-md-8">
+                            <div class="form-group">
+                                <input type="text" name="citySearch" id="citySearch" class="form-control input-sm"
+                                       placeholder="City">
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <input type="button" value="Search by address" id="searchByAddress" class="btn btn-info btn-block">
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<div id="numberOfHomes"></div>
+<div id="valueOfHomes"></div>
 <button id="getHomes" type="button">Get homes</button>
 <button id="getMyHomes" type="button">Get my homes</button>
 <table class="table">
@@ -104,6 +152,40 @@
     <tbody>
     </tbody>
 </table>
+<script type="text/javascript">
+    $list = $('.table tbody');
+    $("#searchByAddress").on('click', function () {
+<!--        let searchData = {-->
+<!--            street: $('#streetSearch').val();-->
+<!--            city: $('#citySearch').val();-->
+<!--            }-->
+        $btn = $(this);
+        $.ajax({
+            url: 'http://localhost:8080/userView/search',
+<!--            url: 'http://localhost:8080/userView/search?street=dyrki&city=bilgoraj',-->
+            dataType: 'json',
+            data: {street: $('#streetSearch').val(), city: $('#citySearch').val()}
+        })
+             .done((res) => {
+                $list.empty();
+                $.each(res, function (i, item) {
+                    $list.append(
+                        '<tr><th scope="row" >' + res[i].homeId + '</th>' +
+                        '<td>' + res[i].addressId + '</td>' +
+                        '<td>' + res[i].userId + '</td>' +
+                        '<td>' + res[i].street + '</td>' +
+                        '<td>' + res[i].house + '</td>' +
+                        '<td>' + res[i].flat + '</td>' +
+                        '<td>' + res[i].code + '</td>' +
+                        '<td>' + res[i].city + '</td>' +
+                        '<td>' + res[i].area + '</td>' +
+                        '<td>' + res[i].price + '</td>' +
+                        '<td>' + res[i].type + '</td>' +
+                        '<td><button class="btn btn-danger btn-xs btn-delete" id='+res[i].id+'>Delete</button></td></tr>');
+                })
+            })
+    });
+</script>
 <script type="text/javascript">
     $list = $('.table tbody');
     $("#getHomes").on('click', function () {
@@ -221,6 +303,7 @@
             }
         })
     }
+
 </script>
 <script>
     function getHomeStats(){
@@ -243,12 +326,14 @@
             }
         })
     }
+
 </script>
 <script>
     $(document).ready(function(){
         $('#header').load('header');
         getHomeStats();
     });
+
 </script>
 </body>
 </html>
