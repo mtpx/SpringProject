@@ -5,6 +5,8 @@
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+    <script src="../../js/homes.js" type="text/javascript"></script>
+    <script src="../../js/main.js" type="text/javascript"></script>
 </head>
 <body>
 <div id="header"></div>
@@ -73,7 +75,7 @@
                             </div>
                         </div>
                     </div>
-                    <input type="button" value="Submit address" id="submitHomeBtn" class="btn btn-info btn-block">
+                    <input type="button" value="Submit address" id="submitHomeBtn" onclick="prepareFullAddressData()" class="btn btn-info btn-block">
                 </form>
             </div>
         </div>
@@ -94,26 +96,8 @@
                                        placeholder="Street">
                             </div>
                         </div>
-<!--                        <div class="col-xs-3 col-sm-3 col-md-3">-->
-<!--                            <div class="form-group">-->
-<!--                                <input type="text" name="house" id="house" class="form-control input-sm"-->
-<!--                                       placeholder="House">-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                        <div class="col-xs-3 col-sm-3 col-md-3">-->
-<!--                            <div class="form-group">-->
-<!--                                <input type="text" name="flat" id="flat" class="form-control input-sm"-->
-<!--                                       placeholder="Flat">-->
-<!--                            </div>-->
-<!--                        </div>-->
                     </div>
                     <div class="row">
-<!--                        <div class="col-xs-4 col-sm-4 col-md-4">-->
-<!--                            <div class="form-group">-->
-<!--                                <input type="text" name="code" id="code" class="form-control input-sm"-->
-<!--                                       placeholder="Code">-->
-<!--                            </div>-->
-<!--                        </div>-->
                         <div class="col-xs-8 col-sm-8 col-md-8">
                             <div class="form-group">
                                 <input type="text" name="citySearch" id="citySearch" class="form-control input-sm"
@@ -122,7 +106,7 @@
                         </div>
                     </div>
                     <br>
-                    <input type="button" value="Search by address" id="searchByAddress" class="btn btn-info btn-block">
+                    <input type="button" value="Search by address"  id="searchByAddressBtn" onclick="searchByAddress()" class="btn btn-info btn-block">
                 </form>
             </div>
         </div>
@@ -131,8 +115,8 @@
 </div>
 <div id="numberOfHomes"></div>
 <div id="valueOfHomes"></div>
-<button id="getHomes" type="button">Get homes</button>
-<button id="getMyHomes" type="button">Get my homes</button>
+<button id="getHomes" type="button" onclick="getHomes()">Get homes</button>
+<button id="getMyHomes" type="button" onclick="getMyHomes()">Get my homes</button>
 <table class="table">
     <thead>
     <tr>
@@ -152,188 +136,11 @@
     <tbody>
     </tbody>
 </table>
-<script type="text/javascript">
-    $list = $('.table tbody');
-    $("#searchByAddress").on('click', function () {
-<!--        let searchData = {-->
-<!--            street: $('#streetSearch').val();-->
-<!--            city: $('#citySearch').val();-->
-<!--            }-->
-        $btn = $(this);
-        $.ajax({
-            url: 'http://localhost:8080/userView/search',
-<!--            url: 'http://localhost:8080/userView/search?street=dyrki&city=bilgoraj',-->
-            dataType: 'json',
-            data: {street: $('#streetSearch').val(), city: $('#citySearch').val()}
-        })
-             .done((res) => {
-                $list.empty();
-                $.each(res, function (i, item) {
-                    $list.append(
-                        '<tr><th scope="row" >' + res[i].homeId + '</th>' +
-                        '<td>' + res[i].addressId + '</td>' +
-                        '<td>' + res[i].userId + '</td>' +
-                        '<td>' + res[i].street + '</td>' +
-                        '<td>' + res[i].house + '</td>' +
-                        '<td>' + res[i].flat + '</td>' +
-                        '<td>' + res[i].code + '</td>' +
-                        '<td>' + res[i].city + '</td>' +
-                        '<td>' + res[i].area + '</td>' +
-                        '<td>' + res[i].price + '</td>' +
-                        '<td>' + res[i].type + '</td>' +
-                        '<td><button class="btn btn-danger btn-xs btn-delete" id='+res[i].id+'>Delete</button></td></tr>');
-                })
-            })
-    });
-</script>
-<script type="text/javascript">
-    $list = $('.table tbody');
-    $("#getHomes").on('click', function () {
-        console.log(localStorage.getItem('loggedUserId'));
-        $btn = $(this);
-        $.ajax({
-            url: 'http://localhost:8080/userView/',
-            dataType: 'json'
-        })
-            .done((res) => {
-                $list.empty();
-                $.each(res, function (i, item) {
-                    $list.append(
-                        '<tr><th scope="row" >' + res[i].homeId + '</th>' +
-                        '<td>' + res[i].addressId + '</td>' +
-                        '<td>' + res[i].userId + '</td>' +
-                        '<td>' + res[i].street + '</td>' +
-                        '<td>' + res[i].house + '</td>' +
-                        '<td>' + res[i].flat + '</td>' +
-                        '<td>' + res[i].code + '</td>' +
-                        '<td>' + res[i].city + '</td>' +
-                        '<td>' + res[i].area + '</td>' +
-                        '<td>' + res[i].price + '</td>' +
-                        '<td>' + res[i].type + '</td>' +
-                        '<td><button class="btn btn-danger btn-xs btn-delete" id='+res[i].id+'>Delete</button></td></tr>');
-                })
-            })
-    });
-</script>
-<script type="text/javascript">
-    $list = $('.table tbody');
-    $("#getMyHomes").on('click', function () {
-        console.log(localStorage.getItem('loggedUserId'));
-        console.log()
-        $btn = $(this);
-        $.ajax({
-            url: 'http://localhost:8080/userView/'+localStorage.getItem('loggedUserId'),
-            dataType: 'json'
-        })
-            .done((res) => {
-                $list.empty();
-                $.each(res, function (i, item) {
-                    $list.append(
-                        '<tr><th scope="row" >' + res[i].homeId + '</th>' +
-                        '<td>' + res[i].addressId + '</td>' +
-                        '<td>' + res[i].userId + '</td>' +
-                        '<td>' + res[i].street + '</td>' +
-                        '<td>' + res[i].house + '</td>' +
-                        '<td>' + res[i].flat + '</td>' +
-                        '<td>' + res[i].code + '</td>' +
-                        '<td>' + res[i].city + '</td>' +
-                        '<td>' + res[i].area + '</td>' +
-                        '<td>' + res[i].price + '</td>' +
-                        '<td>' + res[i].type + '</td>' +
-                        '<td><button class="btn btn-danger btn-xs btn-delete" id='+res[i].id+'>Delete</button></td></tr>');
-                })
-            })
-    });
-</script>
-
-<script type="text/javascript">
-    $('#submitHomeBtn').click(function () {
-        let addressData = {
-            street: $('#street').val(),
-            house: $('#house').val(),
-            flat: $('#flat').val(),
-            code: $('#code').val(),
-            city: $('#city').val(),
-            user:{
-                id: localStorage.getItem('loggedUserId')
-            }
-        };
-
-        saveAddress(addressData);
-    });
-
-    function saveAddress(data) {
-        $.ajax({
-            url: "http://localhost:8080/address",
-            type: "POST",
-            contentType: "application/json",
-            data: JSON.stringify(data),
-            success: function (res) {
-                alert("Addess added successfully");
-                console.log(res);
-                let homeData = {
-                    area: $('#area').val(),
-                    price: $('#price').val(),
-                    type: $('#type').val(),
-                    address:{
-                        id: res.id
-                    }
-                };
-                saveHome(homeData)
-            },
-            error: function () {
-                alert("Adding address error")
-            }
-        })
-    }
-
-    function saveHome(data) {
-        $.ajax({
-            url: "http://localhost:8080/home",
-            type: "POST",
-            contentType: "application/json",
-            data: JSON.stringify(data),
-            success: function (res) {
-                alert("Home added successfully");
-                console.log(data)
-                getHomeStats();
-            },
-            error: function () {
-                alert("Adding home error")
-            }
-        })
-    }
-
-</script>
-<script>
-    function getHomeStats(){
-        $.ajax({
-            url: 'http://localhost:8080/userView/'+localStorage.getItem('loggedUserId')+'/value' ,
-            type: "GET",
-            contentType: "application/json",
-            success: function (res) {
-                $("#valueOfHomes").text("    Value of my homes: "+res);
-                console.log(res)
-            }
-        })
-        $.ajax({
-            url: 'http://localhost:8080/userView/'+localStorage.getItem('loggedUserId')+'/numberOfHomes' ,
-            type: "GET",
-            contentType: "application/json",
-            success: function (res) {
-                $("#numberOfHomes").text("    Number of my homes: "+res);
-                console.log(res)
-            }
-        })
-    }
-
-</script>
 <script>
     $(document).ready(function(){
         $('#header').load('header');
         getHomeStats();
     });
-
 </script>
 </body>
 </html>
